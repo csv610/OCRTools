@@ -99,7 +99,10 @@ install_requirements() {
 
 install_dev() {
     log_info "Installing development dependencies..."
-    "$PIP" install -e ".[dev]"
+    "$PIP" install -e ".[dev]" --no-build-isolation --no-deps || {
+        # If that fails, try installing dev deps without the package
+        "$PIP" install pytest>=7.4.0 pytest-cov>=4.1.0 black>=23.9.0 flake8>=6.0.0 mypy>=1.5.0 isort>=5.12.0 ruff>=0.10.0
+    }
     log_success "Development dependencies installed"
 }
 

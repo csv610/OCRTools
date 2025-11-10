@@ -33,12 +33,15 @@ dependencies = [
     "tenacity>=8.2.0",
     "streamlit>=1.28.0",
     "watchdog>=3.0.0",
-    "torch>=2.0.0",
-    "transformers>=4.30.0",
     "Pillow>=10.0.0",
 ]
 
 [project.optional-dependencies]
+ml = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+]
+
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
@@ -68,10 +71,10 @@ Repository = "https://github.com/csv610/OCRTools.git"
 Issues = "https://github.com/csv610/OCRTools/issues"
 
 [project.scripts]
-pdftools-ocr = "pdftools.mistral_ocr:main"
+pdftools-ocr = "ocr.mistral_ocr:main"
 
 [tool.setuptools]
-packages = ["pdftools"]
+packages = ["ocr"]
 
 [tool.black]
 line-length = 100

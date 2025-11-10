@@ -1,4 +1,6 @@
 mistralai>=1.9.11
 tenacity>=9.0.0
-streamlit
 watchdog
+# streamlit requires pyarrow which has build issues on Python 3.14
+# Uncomment when your environment supports it:
+# streamlit
