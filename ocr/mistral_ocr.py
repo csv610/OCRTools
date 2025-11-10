@@ -76,7 +76,7 @@ class MistralOCR:
             str: The base64-encoded string of the PDF.
 
         Raises:
-            IOError: If file cannot be read after retries.
+            IOError: If file cannot be read.
         """
         with open(pdf_path, "rb") as pdf_file:
             encoded = base64.b64encode(pdf_file.read()).decode('utf-8')
@@ -113,7 +113,7 @@ class MistralOCR:
             bool: True if successful, False otherwise.
 
         Raises:
-            IOError: If files cannot be written after retries.
+            IOError: If files cannot be written.
         """
         output_path.mkdir(parents=True, exist_ok=True)
 
@@ -140,7 +140,7 @@ class MistralOCR:
             output_dir (str): The directory to save the image in.
 
         Raises:
-            IOError: If file cannot be written after retries.
+            IOError: If file cannot be written.
             ValueError: If image data is invalid.
         """
         # Extract base64 data (may be in data URI format or just base64)
