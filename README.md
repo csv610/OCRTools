@@ -1,16 +1,15 @@
 # PDFTools
 
-A comprehensive Python toolkit for PDF processing with multiple OCR backends, including API-based and local model inference options.
+A Python toolkit for PDF OCR processing with support for Mistral API and local model inference.
 
 ## Features
 
-- **Mistral OCR API Integration** - High-quality OCR using Mistral's latest vision model
-- **Local OCR Processing** - Lightweight OCR using Qwen2-VL and olmOCR models
-- **Web UI Viewer** - Streamlit-based interface for viewing and exploring OCR results
-- **Retry Logic** - Built-in exponential backoff for resilient API calls
-- **Batch Processing** - Process multiple PDFs efficiently
-- **Image Extraction** - Automatically extract and preserve images from PDFs
-- **Markdown Output** - Convert PDF content to clean, structured markdown
+- **Mistral OCR API Integration** - OCR via Mistral's API
+- **Local OCR Processing** - OCR using Qwen2-VL and olmOCR models (experimental)
+- **Web UI Viewer** - Streamlit-based interface for viewing OCR results
+- **Retry Logic** - Exponential backoff retry mechanism for API calls
+- **Image Extraction** - Extract and save images from PDFs
+- **Markdown Output** - Convert PDF content to markdown format
 
 ## Prerequisites
 
@@ -74,13 +73,12 @@ This will:
 1. Convert the PDF to base64 format
 2. Send it to Mistral's OCR API
 3. Extract text as markdown
-4. Save images to the output directory
-5. Generate a `results.zip` file containing all outputs
+4. Save extracted images to the output directory
 
 **Command-line options:**
 
 ```bash
-python mistral_ocr.py input.pdf [--output-dir ./output] [--max-retries 3] [--timeout 300]
+python mistral_ocr.py input.pdf [--output-dir ./output]
 ```
 
 ### Local OCR (Experimental)
@@ -229,8 +227,8 @@ device = "cpu"  # Instead of "cuda"
 ## Performance Tips
 
 1. **Batch Processing**: Process multiple PDFs in sequence to avoid memory issues
-2. **API Rate Limiting**: Mistral API may have rate limits; implement delays between requests
-3. **Local Models**: GPU inference is 5-10x faster than CPU; ensure CUDA is properly installed
+2. **API Rate Limiting**: Mistral API may have rate limits; implement delays between requests if needed
+3. **Local Models**: GPU inference is faster than CPU; ensure CUDA is properly installed if using GPU
 4. **Output Optimization**: Resize extracted images to reduce file size
 
 ## Contributing
@@ -243,9 +241,9 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 ## Support
 
-- 📖 **Documentation**: See examples and detailed docs in the README
-- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/csv610/OCRTools/issues)
-- 💬 **Discussions**: Start a discussion for questions and feature requests
+- **Documentation**: See examples and detailed docs in the README
+- **Issues**: Report bugs on [GitHub Issues](https://github.com/csv610/OCRTools/issues)
+- **Discussions**: Use GitHub Discussions for questions and feature requests
 
 ## Roadmap
 
