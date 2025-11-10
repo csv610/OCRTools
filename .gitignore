@@ -133,7 +133,7 @@ dmypy.json
 
 # Project specific
 *.pdf
-output/
+outputs/
 results.zip
 *.log
 mistral_ocr.log

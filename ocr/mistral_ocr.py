@@ -94,11 +94,13 @@ class MistralOCR:
         Returns:
             Path: The output directory path.
         """
+        base_output_dir = Path(__file__).parent.parent / "outputs"
+
         if custom_output_dir:
-            return Path(custom_output_dir)
+            return base_output_dir / custom_output_dir
 
         pdf_path_obj = Path(pdf_path).resolve()
-        return pdf_path_obj.parent / pdf_path_obj.stem
+        return base_output_dir / pdf_path_obj.stem
 
     @retry(
         stop=stop_after_attempt(3),
