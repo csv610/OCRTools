@@ -103,6 +103,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+pdf2mdenv/
 ocrenv/
 
 # Spyder project settings
@@ -143,3 +144,4 @@ streamlit_cache/
 # Virtual environment symlink
 venv
 ocrenv
+pdf2mdenv

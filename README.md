@@ -65,7 +65,7 @@ export MISTRAL_API_KEY=your_api_key_here
 Process a PDF using the Mistral OCR API:
 
 ```bash
-cd ocr
+cd pdf2md
 python mistral_ocr.py path/to/your/document.pdf
 ```
 
@@ -86,7 +86,7 @@ python mistral_ocr.py input.pdf [--output-dir ./output]
 Process a PDF using local vision models (requires significant GPU memory):
 
 ```bash
-cd ocr
+cd pdf2md
 python olma_ocr.py
 ```
 
@@ -97,7 +97,7 @@ python olma_ocr.py
 Start the Streamlit web interface to view OCR results:
 
 ```bash
-cd ocr
+cd pdf2md
 streamlit run sl_mdviewer.py
 ```
 
@@ -109,7 +109,7 @@ Then:
 
 ```
 PDFTools/
-├── ocr/
+├── pdf2md/
 │   ├── mistral_ocr.py       # Mistral API OCR implementation
 │   ├── olma_ocr.py          # Local model OCR (experimental)
 │   └── sl_mdviewer.py       # Streamlit web viewer
@@ -138,7 +138,7 @@ PDFTools/
 Main class for handling PDF OCR operations via Mistral API.
 
 ```python
-from ocr.mistral_ocr import MistralOCR
+from pdf2md.mistral_ocr import MistralOCR
 
 ocr = MistralOCR()
 result = ocr.extract("document.pdf", output_dir="./output")
@@ -153,7 +153,7 @@ result = ocr.extract("document.pdf", output_dir="./output")
 Simple web interface for viewing OCR results.
 
 ```bash
-streamlit run ocr/sl_mdviewer.py
+streamlit run pdf2md/sl_mdviewer.py
 ```
 
 Accepts ZIP files with structure:

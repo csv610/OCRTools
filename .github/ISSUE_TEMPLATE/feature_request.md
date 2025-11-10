@@ -36,7 +36,7 @@ Explain the use case and benefits:
 **Example usage:**
 ```python
 # How would users interact with this feature?
-result = ocr.process_batch([pdf1, pdf2, pdf3])
+result = pdf2md.process_batch([pdf1, pdf2, pdf3])
 ```
 
 ## Alternative Solutions

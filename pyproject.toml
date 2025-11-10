@@ -71,10 +71,10 @@ Repository = "https://github.com/csv610/OCRTools.git"
 Issues = "https://github.com/csv610/OCRTools/issues"
 
 [project.scripts]
-pdftools-ocr = "ocr.mistral_ocr:main"
+pdftools-pdf2md = "pdf2md.mistral_ocr:main"
 
 [tool.setuptools]
-packages = ["ocr"]
+packages = ["pdf2md"]
 
 [tool.black]
 line-length = 100
