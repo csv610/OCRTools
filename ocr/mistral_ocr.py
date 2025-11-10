@@ -100,6 +100,36 @@ class MistralOCR:
         pdf_path_obj = Path(pdf_path).resolve()
         return pdf_path_obj.parent / pdf_path_obj.stem
 
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        retry=retry_if_exception_type(Exception),
+    )
+    def _call_ocr_api(self, base64_pdf: str):
+        """
+        Calls the Mistral OCR API with retry logic.
+
+        Args:
+            base64_pdf (str): The base64-encoded PDF content.
+
+        Returns:
+            OCR response object.
+
+        Raises:
+            Exception: If API call fails after retries.
+        """
+        logger.info("Calling OCR API...")
+        response = self.client.ocr.process(
+            model=OCR_MODEL,
+            document={
+                "type": "document_url",
+                "document_url": f"data:application/pdf;base64,{base64_pdf}",
+            },
+            include_image_base64=True,
+        )
+        logger.info("OCR API call successful")
+        return response
+
     def _save_results(self, output_path: Path, base_filename: str, response) -> bool:
         """
         Saves OCR results (markdown and images) to disk.
@@ -154,36 +184,6 @@ class MistralOCR:
 
         image_path.write_bytes(image_data)
         logger.info(f"Successfully saved image: {image.id}")
-
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type(Exception),
-    )
-    def _call_ocr_api(self, base64_pdf: str):
-        """
-        Calls the Mistral OCR API with retry logic.
-
-        Args:
-            base64_pdf (str): The base64-encoded PDF content.
-
-        Returns:
-            OCR response object.
-
-        Raises:
-            Exception: If API call fails after retries.
-        """
-        logger.info("Calling OCR API...")
-        response = self.client.ocr.process(
-            model=OCR_MODEL,
-            document={
-                "type": "document_url",
-                "document_url": f"data:application/pdf;base64,{base64_pdf}",
-            },
-            include_image_base64=True,
-        )
-        logger.info("OCR API call successful")
-        return response
 
     def extract(self, pdf_path: str, output_dir: Optional[str] = None) -> bool:
         """
