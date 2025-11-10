@@ -185,7 +185,7 @@ class MistralOCR:
         logger.info("OCR API call successful")
         return response
 
-    def process_document(self, pdf_path: str, output_dir: Optional[str] = None) -> bool:
+    def extract(self, pdf_path: str, output_dir: Optional[str] = None) -> bool:
         """
         Processes a PDF document via OCR and saves the results as a markdown file.
 
@@ -254,7 +254,7 @@ def main():
 
     try:
         ocr_processor = MistralOCR()
-        success = ocr_processor.process_document(args.pdf_file, args.output_dir)
+        success = ocr_processor.extract(args.pdf_file, args.output_dir)
 
         if success:
             logger.info("Processing completed successfully.")

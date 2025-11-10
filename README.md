@@ -142,16 +142,13 @@ Main class for handling PDF OCR operations via Mistral API.
 ```python
 from ocr.mistral_ocr import MistralOCR
 
-ocr = MistralOCR(api_key="your_key")
-result = ocr.process_pdf("document.pdf", output_dir="./output")
+ocr = MistralOCR()
+result = ocr.extract("document.pdf", output_dir="./output")
 ```
 
 #### Methods
 
-- `process_pdf(pdf_path, output_dir)` - Process a PDF file and return results
-- `validate_pdf(pdf_path)` - Validate PDF file before processing
-- `encode_pdf_to_base64(pdf_path)` - Encode PDF as base64 string
-- `extract_content_from_response(response)` - Parse API response
+- `extract(pdf_path, output_dir)` - Extract text and images from a PDF file via OCR
 
 ### Streamlit Viewer
 
