@@ -23,8 +23,8 @@ A comprehensive Python toolkit for PDF processing with multiple OCR backends, in
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/csv610/ocrtools.git
-cd ocrtools
+git clone https://github.com/csv610/OCRTools.git
+cd OCRTools
 ```
 
 ### 2. Create and activate a virtual environment
@@ -247,7 +247,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 ## Support
 
 - 📖 **Documentation**: See examples and detailed docs in the README
-- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/csv610/ocrtools/issues)
+- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/csv610/OCRTools/issues)
 - 💬 **Discussions**: Start a discussion for questions and feature requests
 
 ## Roadmap
