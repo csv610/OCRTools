@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 from mistralai import Mistral
+
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -227,7 +228,7 @@ class MistralOCR:
             return False
 
 
-def main():
+def cli():
     """
     Main function for the CLI application.
 
@@ -273,5 +274,6 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    cli()
+    print( "Completed: " )
 

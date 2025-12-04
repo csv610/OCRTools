@@ -121,25 +121,25 @@ run_linters() {
     fi
 
     log_info "  • flake8..."
-    "$PYTHON" -m flake8 pdf2md/ --max-line-length=100 --max-complexity=10 || {
+    "$PYTHON" -m flake8 ocr/ --max-line-length=100 --max-complexity=10 || {
         log_error "flake8 checks failed"
         exit 1
     }
 
     log_info "  • black (checking)..."
-    "$PYTHON" -m black pdf2md/ --check --line-length=100 || {
+    "$PYTHON" -m black ocr/ --check --line-length=100 || {
         log_error "black formatting check failed. Run './setup.sh format' to fix."
         exit 1
     }
 
     log_info "  • isort (checking)..."
-    "$PYTHON" -m isort pdf2md/ --check-only --profile=black || {
+    "$PYTHON" -m isort ocr/ --check-only --profile=black || {
         log_error "isort check failed. Run './setup.sh format' to fix."
         exit 1
     }
 
     log_info "  • mypy..."
-    "$PYTHON" -m mypy pdf2md/ --ignore-missing-imports || {
+    "$PYTHON" -m mypy ocr/ --ignore-missing-imports || {
         log_error "mypy type checking failed"
         exit 1
     }
@@ -151,10 +151,10 @@ run_formatters() {
     log_info "Formatting code..."
 
     log_info "  • black..."
-    "$PYTHON" -m black pdf2md/ --line-length=100
+    "$PYTHON" -m black ocr/ --line-length=100
 
     log_info "  • isort..."
-    "$PYTHON" -m isort pdf2md/ --profile=black
+    "$PYTHON" -m isort ocr/ --profile=black
 
     log_success "Code formatted"
 }

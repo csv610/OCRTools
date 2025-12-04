@@ -83,22 +83,22 @@ def process_document(file_path: str, output_dir: str) -> Dict[str, Any]:
 
 ```bash
 # Format with black
-black pdf2md/
+black ocr/
 
 # Sort imports with isort
-isort pdf2md/
+isort ocr/
 
 # Check with flake8
-flake8 pdf2md/
+flake8 ocr/
 
 # Type checking with mypy
-mypy pdf2md/
+mypy ocr/
 ```
 
 Or use the convenient all-in-one command:
 
 ```bash
-black pdf2md/ && isort pdf2md/ && flake8 pdf2md/ && mypy pdf2md/
+black ocr/ && isort ocr/ && flake8 ocr/ && mypy ocr/
 ```
 
 ### 4. Write or Update Tests
@@ -117,10 +117,10 @@ Before committing, ensure all checks pass:
 
 ```bash
 pytest tests/ --cov=pdftools
-black --check pdf2md/
-isort --check pdf2md/
-flake8 pdf2md/
-mypy pdf2md/
+black --check ocr/
+isort --check ocr/
+flake8 ocr/
+mypy ocr/
 ```
 
 ### 6. Commit Your Changes
