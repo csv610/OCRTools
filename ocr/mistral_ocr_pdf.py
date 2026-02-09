@@ -128,7 +128,7 @@ class MistralOCR:
                 "type": "document_url",
                 "document_url": f"data:application/pdf;base64,{base64_pdf}",
             },
-            include_image_base64=True,
+            include_image_base64=False,
         )
         logger.info("OCR API call successful")
         return response
@@ -152,14 +152,17 @@ class MistralOCR:
 
         # Write markdown file
         output_filename = output_path / f"{base_filename}.md"
+        print( "file: ", output_filename)
         with open(output_filename, "w", encoding="utf-8") as f:
             for page in response.pages:
                 f.write(page.markdown)
 
+        print( "Saving images ...")
         # Save images
         for page in response.pages:
             for image in page.images:
                 self._save_image(image, str(output_path))
+        print( "All saveed ...")
 
         logger.info(f"OCR process complete. Output saved to '{output_filename}'")
         return True
@@ -229,12 +232,6 @@ class MistralOCR:
 
 
 def cli():
-    """
-    Main function for the CLI application.
-
-    Returns:
-        int: Exit code (0 for success, 1 for failure).
-    """
     parser = argparse.ArgumentParser(
         description="Process a PDF document using Mistral OCR."
     )
