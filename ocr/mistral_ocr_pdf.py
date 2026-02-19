@@ -47,6 +47,47 @@ class MistralOCR:
         self.client = Mistral(api_key=api_key)
         logger.info("MistralOCR client initialized successfully")
 
+    def extract(self, pdf_path: str, output_dir: Optional[str] = None) -> bool:
+        """
+        Processes a PDF document via OCR and saves the results as a markdown file.
+
+        Args:
+            pdf_path (str): The path to the input PDF file.
+            output_dir (Optional[str]): The directory to save the output files.
+                                        If not provided, uses the input PDF's directory
+                                        with the filename (without extension) as the subdirectory.
+
+        Returns:
+            bool: True if processing was successful, False otherwise.
+        """
+        if not self._validate_pdf_path(pdf_path):
+            return False
+
+        logger.info(f"Processing '{pdf_path}'...")
+
+        try:
+            # Encode PDF with retry logic
+            base64_pdf = self._encode_pdf(pdf_path)
+
+            # Get output path and base filename
+            output_path = self._get_output_path(pdf_path, output_dir)
+            base_filename = Path(pdf_path).stem
+
+            # Call OCR API with retry logic
+            response = self._call_ocr_api(base64_pdf)
+
+            # Save results with retry logic
+            return self._save_results(output_path, base_filename, response)
+
+        except (IOError, OSError) as e:
+            logger.error(f"File I/O error after retries: {e}")
+            return False
+        except Exception as e:
+            logger.error(f"An error occurred during OCR processing: {e}")
+            return False
+
+
+
     def _validate_pdf_path(self, pdf_path: str) -> bool:
         """
         Validates that the PDF path is valid and the file exists.
@@ -191,47 +232,7 @@ class MistralOCR:
         image_path.write_bytes(image_data)
         logger.info(f"Successfully saved image: {image.id}")
 
-    def extract(self, pdf_path: str, output_dir: Optional[str] = None) -> bool:
-        """
-        Processes a PDF document via OCR and saves the results as a markdown file.
-
-        Args:
-            pdf_path (str): The path to the input PDF file.
-            output_dir (Optional[str]): The directory to save the output files.
-                                        If not provided, uses the input PDF's directory
-                                        with the filename (without extension) as the subdirectory.
-
-        Returns:
-            bool: True if processing was successful, False otherwise.
-        """
-        if not self._validate_pdf_path(pdf_path):
-            return False
-
-        logger.info(f"Processing '{pdf_path}'...")
-
-        try:
-            # Encode PDF with retry logic
-            base64_pdf = self._encode_pdf(pdf_path)
-
-            # Get output path and base filename
-            output_path = self._get_output_path(pdf_path, output_dir)
-            base_filename = Path(pdf_path).stem
-
-            # Call OCR API with retry logic
-            response = self._call_ocr_api(base64_pdf)
-
-            # Save results with retry logic
-            return self._save_results(output_path, base_filename, response)
-
-        except (IOError, OSError) as e:
-            logger.error(f"File I/O error after retries: {e}")
-            return False
-        except Exception as e:
-            logger.error(f"An error occurred during OCR processing: {e}")
-            return False
-
-
-def cli():
+def main():
     parser = argparse.ArgumentParser(
         description="Process a PDF document using Mistral OCR."
     )
@@ -271,6 +272,6 @@ def cli():
         return 1
 
 if __name__ == "__main__":
-    cli()
+    main()
     print( "Completed: " )
 
