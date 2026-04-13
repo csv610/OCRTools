@@ -33,7 +33,7 @@ dependencies = [
     "tenacity>=8.2.0",
     "streamlit>=1.28.0",
     "watchdog>=3.0.0",
-    "Pillow>=10.0.0",
+    "Pillow>=11.3.0",
 ]
 
 [project.optional-dependencies]
