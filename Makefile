@@ -73,7 +73,7 @@ install-dev: .venv-check
 
 test: .venv-check
 	@echo "$(BLUE)Running tests with coverage...$(NC)"
-	$(VENV_PYTHON) -m pytest tests/ --cov=pdftools --cov-report=html --cov-report=term-missing
+	$(VENV_PYTHON) -m pytest tests/ --cov=ocr --cov-report=html --cov-report=term-missing
 	@echo "$(GREEN)✓ Tests complete! Coverage report in htmlcov/index.html$(NC)"
 
 lint: .venv-check
@@ -132,7 +132,7 @@ run-ocr: .venv-check
 		exit 1; \
 	fi
 	@echo "$(BLUE)Running PDF to Markdown on $(PDF)...$(NC)"
-	$(VENV_PYTHON) ocr/mistral_ocr.py "$(PDF)"
+	$(VENV_PYTHON) ocr/mistral_ocr_pdf.py "$(PDF)"
 
 run-viewer: .venv-check
 	@echo "$(BLUE)Starting Streamlit markdown viewer...$(NC)"

@@ -5,7 +5,7 @@ This module provides OCR functionality using open-source vision-language models.
 It's designed for local inference and is experimental - requires significant GPU memory.
 
 EXPERIMENTAL: This is a proof-of-concept implementation. For production use,
-consider the mistral_ocr.py API-based approach which is more stable and scalable.
+consider the mistral_ocr_pdf.py API-based approach which is more stable and scalable.
 """
 
 import base64

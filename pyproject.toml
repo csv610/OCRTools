@@ -71,7 +71,7 @@ Repository = "https://github.com/csv610/OCRTools.git"
 Issues = "https://github.com/csv610/OCRTools/issues"
 
 [project.scripts]
-pdftools-ocr = "ocr.mistral_ocr:main"
+pdftools-ocr = "ocr.mistral_ocr_pdf:main"
 
 [tool.setuptools]
 packages = ["ocr"]
@@ -100,11 +100,11 @@ line_length = 100
 skip_glob = ["*/migrations/*"]
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
 check_untyped_defs = true
 no_implicit_optional = true
 warn_redundant_casts = true
@@ -114,10 +114,10 @@ warn_no_return = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
-addopts = "--cov=pdftools --cov-report=html --cov-report=term-missing"
+addopts = "--cov=ocr --cov-report=html --cov-report=term-missing"
 
 [tool.coverage.run]
-source = ["pdftools"]
+source = ["ocr"]
 omit = [
     "*/tests/*",
     "*/__main__.py",
@@ -129,7 +129,7 @@ exclude_lines = [
     "def __repr__",
     "raise AssertionError",
     "raise NotImplementedError",
-    "if __name__ == .__main__.:",
+    "if __name__ == \"__main__\":",
     "if TYPE_CHECKING:",
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",

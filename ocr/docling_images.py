@@ -1,14 +1,16 @@
-
+import sys
 from pathlib import Path
+
 from docling.document_converter import DocumentConverter
 from docling_core.types.doc import PictureItem, TableItem
+
 
 def extract_images_from_any_document(input_doc_path, output_dir):
     input_doc_path = Path(input_doc_path)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    doc_converter = DocumentConverter()  # Supports all formats by default
+    doc_converter = DocumentConverter()
     conv_res = doc_converter.convert(input_doc_path)
     doc_filename = conv_res.input.file.stem
 
@@ -24,6 +26,6 @@ def extract_images_from_any_document(input_doc_path, output_dir):
             img_path = output_dir / f"img-{picture_counter}.png"
             element.get_image(conv_res.document).save(img_path, "PNG")
 
-# Example usage:
-import sys
-extract_images_from_any_document(sys.argv[1], "pdf_images")
+
+if __name__ == "__main__":
+    extract_images_from_any_document(sys.argv[1], "pdf_images")

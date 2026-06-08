@@ -23,7 +23,7 @@ def load_image_as_bytes(image_path):
 
 def query_llm_with_image(image_bytes, model="gemma3:27b-cloud", prompt=None):
     if prompt is None:
-        prompt = "Extract all readable text from this image and format it as structured Markdown. Do not trucate or make things up"
+        prompt = "Extract all readable text from this image and format it as structured Markdown. Do not truncate or make things up"
 
     response = ollama.chat(
         model=model,

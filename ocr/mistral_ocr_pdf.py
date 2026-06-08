@@ -203,7 +203,7 @@ class MistralOCR:
         for page in response.pages:
             for image in page.images:
                 self._save_image(image, str(output_path))
-        print( "All saveed ...")
+        print( "All saved ...")
 
         logger.info(f"OCR process complete. Output saved to '{output_filename}'")
         return True

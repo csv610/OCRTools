@@ -1,8 +1,9 @@
 import re
 import sys
 from pathlib import Path
+from typing import Set
 
-def extract_unique_words(text: str) -> set[str]:
+def extract_unique_words(text: str) -> Set[str]:
     words = re.findall(r"[a-zA-Z]+", text)
     return {word.lower() for word in words}
 
